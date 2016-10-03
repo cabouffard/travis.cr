@@ -1,0 +1,7 @@
+name: travis
+version: 0.1.0
+
+authors:
+  - Charles-Andre Bouffard <cabouffard@gmail.com>
+
+license: MIT
