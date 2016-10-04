@@ -1,5 +1,6 @@
-require "./travis/*"
+require "json"
+require "http/client"
 
-module Travis
-  # TODO Put your code here
-end
+require "./travis/**"
+
+module Travis; end
