@@ -2,7 +2,7 @@ require "./resource"
 
 module Travis
   class Resource
-    def self.all(key : String? = nil, params : Hash(String, String)? = nil)
+    def self.find_all(key : String? = nil, params : Hash(String, String)? = nil)
       resource = key.nil? ? @@resource : "#{@@resource}/#{key}"
       response = Travis::Client.request(resource, params)
 
