@@ -12,14 +12,6 @@ module Travis
       File.join(BASE_URL, resource)
     end
 
-    # Sets headers and query params for requests
-    # private def self.default_options(params : Hash? = nil)
-    #   Hash(String, Hash(String, String)).new.tap do |hash|
-    #     hash["headers"] = default_headers
-    #     hash["params"] = params if params
-    #   end
-    # end
-
     private def self.default_headers
       error_message = "Please set a TRAVIS_ACCESS_TOKEN in your ENV variables"
       raise Error::MissingCredentials.new(error_message) unless ENV["TRAVIS_ACCESS_TOKEN"]?
