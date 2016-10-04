@@ -7,8 +7,8 @@ describe Travis::Repository do
       (repositories.size).should eq(25)
     end
 
-    context "when param specified" do
-      it "returns an array of repositories filtered by the param" do
+    context "with a key specified" do
+      it "returns an array of repositories corresponding to the key" do
         repositories = Travis::Repository.all("glossier")
         repository = repositories.first
         (repository.slug).should eq("glossier/demo_segment")
