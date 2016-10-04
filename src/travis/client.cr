@@ -12,14 +12,14 @@ module Travis
       path = build_url(resource)
       path += "?#{to_query_string(params)}" unless params.nil?
 
-      response = HTTP::Client.get(build_url(resource), headers: default_headers)
+      response = HTTP::Client.get(path, headers: default_headers)
       handle_response(response)
 
       response
     end
 
     private def self.build_url(resource) : String
-      File.join(BASE_URL, resource)
+      File.join(BASE_URL, resource.to_s)
     end
 
     private def self.default_headers : HTTP::Headers

@@ -2,8 +2,6 @@ require "./resource"
 
 module Travis
   class Repository < Resource
-    @@resource = "repos"
-
     JSON.mapping({
       id: Int32,
       slug: String,
@@ -18,8 +16,17 @@ module Travis
       last_build_finished_at: {type: Time, nilable: true, converter: Time::Format.new("%F")},
     })
 
-    def builds
-      Travis::Build.find_all("#{slug}/builds")
+    def builds : Array(Travis::Build)
+      Travis::Build.find_all(key: builds_resource_key, options: { "with_resource" => false })
+    end
+
+    def self.resource_name : String
+      "repos"
+    end
+
+    private def builds_resource_key : String
+      build_resource_name = Travis::Build.resource_name
+      File.join(self.class.resource_name, slug, build_resource_name)
     end
   end
 end
