@@ -1,7 +1,7 @@
 module Travis
   class Client
     BASE_URL = "https://api.travis-ci.org"
-    TOKEN = "SET-YOUR-OWN"
+    TOKEN = ENV["TRAVIS_ACCESS_TOKEN"]? ? ENV["TRAVIS_ACCESS_TOKEN"] : "SET-YOUR-OWN"
 
     def self.request(resource) : HTTP::Client::Response
       HTTP::Client.get(build_url(resource), headers: default_headers)
@@ -21,6 +21,9 @@ module Travis
     # end
 
     private def self.default_headers
+      error_message = "Please set a TRAVIS_ACCESS_TOKEN in your ENV variables"
+      raise Error::MissingCredentials.new(error_message) unless ENV["TRAVIS_ACCESS_TOKEN"]?
+
       HTTP::Headers{"Authorization" => "token #{TOKEN}"}
     end
   end
