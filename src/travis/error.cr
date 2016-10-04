@@ -8,6 +8,15 @@ module Travis
       end
     end
 
+    class JSONParseError < APIError; end
     class MissingCredentials < APIError; end
+    class BadRequest < APIError; end
+    class Unauthorized < APIError; end
+    class Forbidden < APIError; end
+    class NotFound < APIError; end
+    class Unprocessable < APIError; end
+    class InternalServerError < APIError; end
+    class BadGateway < APIError; end
+    class ServiceUnavailable < APIError; end
   end
 end

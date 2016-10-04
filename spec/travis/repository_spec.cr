@@ -15,4 +15,15 @@ describe Travis::Repository do
       end
     end
   end
+
+  context "when finding" do
+    context "the builds" do
+      it "returns an array of builds associated with the repository" do
+        repository = Travis::Repository.find("glossier/solidus_retail")
+        builds = repository.builds
+        pp builds
+        (builds.size).should eq(25)
+      end
+    end
+  end
 end

@@ -17,5 +17,9 @@ module Travis
       last_build_started_at: {type: Time, nilable: true, converter: Time::Format.new("%F")},
       last_build_finished_at: {type: Time, nilable: true, converter: Time::Format.new("%F")},
     })
+
+    def builds
+      Travis::Build.find_all("#{slug}/builds")
+    end
   end
 end
